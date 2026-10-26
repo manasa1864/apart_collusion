@@ -1,0 +1,24 @@
+# Python
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# Secrets: API keys live in environment variables, never in files
+.env
+.env.*
+*.key
+
+# Run bookkeeping (regenerated; the ledger is per machine and per day)
+results/*/cache.jsonl
+results/*/judge_cache.jsonl
+results/*/ledger.json
+results/*/run.log
+*.tmp
+
+# Scratch
+hand.csv
+hand_agreement.json
+.vscode/
+.DS_Store
+Thumbs.db

@@ -1,0 +1,21 @@
+| H | claim | estimate [95% CI] | p (raw) | p (Holm) | n | verdict | note |
+|---|---|---|---|---|---|---|---|
+| H0 | Manipulation check: collusion index, positive control (told to collude) - S3 | 2.290 [1.895, 2.713] | 0.000 | 0.001 | 20+20 ep | supported | if this fails, the models do not collude even when told to: report that first |
+| H1 | Mole offer uptake: direct > hint > benign |  |  |  |  | not run | not run (needs cells S1-S3) |
+| H2 | P(any leniency report) at 100% - 25% exposure | 0.050 [0.000, 0.150] | 0.500 | 1.000 | 20+20 ep | not significant |  |
+| H3a | Compliance: told monitored (S5) - not told (S3), 25% exposure | -0.013 [-0.081, 0.054] | 0.359 | 1.000 | 20+20 ep | not significant |  |
+| H3b | Coded share of collusive talk rises when told monitored |  |  |  |  | not run | not run (needs judge labels) |
+| H4 | PC1 share of loyalty components (< 0.5 means more than one trait) | 0.507 [0.467, 0.543] | 0.709 | 1.000 | 400 agents | contradicted | components with variance: W, loyal_report, loyal_secret, loyal_bait |
+| H4b | Cronbach alpha of loyalty components (< 0.6 means not one scale) | -0.077 [-0.344, 0.120] |  |  | 400 agents | direction ok (no test) |  |
+| H5 | Price of loyalty: defection rises with the outside option |  |  |  |  | not run | not run (needs dose design) |
+| H6 | Contagion hazard ratio (first deviation after another agent deviated vs not) | 2.477 [1.619, 3.595] | 0.001 | 0.005 | 80 ep | supported |  |
+| H7 | Betweenness vs compliance |  |  |  |  | not run | not run (needs sparse webs) |
+| H8 | Hub entry spreads the offer faster |  |  |  |  | not run | not run (needs W2 and W9) |
+| H9 | Neighbour contagion |  |  |  |  | not run | not run (needs sparse webs) |
+| H10 | Demand surge lowers compliance |  |  |  |  | not run | not run (needs W1, W6) |
+| H11 | Recruiting the broker splits the camps more |  |  |  |  | not run | not run (needs W3, W10) |
+| H12 | Key player defects first more often than chance |  |  |  |  | not run | not run |
+| H13 | Spreading strength beta*lambda1 |  |  |  |  | not run | not run |
+| H14 | Thresholds are heterogeneous |  |  |  |  | not run | not run |
+| H15 | Spearman(stubbornness b_i, loyalty index) | -0.262 [-0.359, -0.160] | 1.000 | 1.000 | 303 agents | contradicted | exploratory |
+| H16 | Predicted mixing time orders observed alignment |  |  |  |  | not run | not run (needs W1-W5) |

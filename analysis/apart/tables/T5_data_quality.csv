@@ -1,0 +1,15 @@
+item,value
+episodes,80
+agents,400
+messages,1954
+message label source,keyword
+backend(s),llm
+model(s),"openai/gpt-oss-120b, openai/gpt-oss-20b"
+parse failures (agent-rounds),0
+blocked messages,0
+cartels that formed,0.29
+episodes in design 'cells',"80 (4 cells, 20-20 each)"
+API calls (ledger),4813
+API tokens (ledger),3479787
+tokens per call,723
+days with API use,3
