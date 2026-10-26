@@ -1,15 +1,14 @@
 # AI Cartel Sting — final game plan (Apart Research, Track 3: Collusion Carriers and Countermeasures)
 
-## 0. Apart version (deadline 26 Oct) — what this folder runs
-The full design below needs ~400 episodes; the Groq free tier gives roughly 10-15 per day across three models. This folder therefore runs a
-**reduced preset** (`python run_cartel.py --preset apart`), with the full design kept intact in `../original/` for later.
+## 0. Apart version (deadline 26 Oct) — what was run
+The full design below needs ~400 episodes; the Groq free tier gives roughly 10-15 per day across models. This repo therefore ran a
+**reduced preset** (`python run_cartel.py --preset apart`).
 - **Cells:** S3 (direct offer, 25% read), S4 (100% read), S5 (told watched, 25% read), PC (positive control). Dropped for now: S0, S1, S2, S6, S7, the dose design (L7) and the webs.
 - **Schedule:** 12 rounds; offer round 3, outside-offer slot 4, bait 5, probe 7, leniency opens round 9 (`--schedule short`). Agents see 2 rounds of history.
-- **Models:** each cell is run on `openai/gpt-oss-120b`, `openai/gpt-oss-20b` and `qwen/qwen3.8-27b`; each has its own daily quota. Model is reported as a factor (F21, T7), which also gives a small 3.3 angle (do model families behave differently?).
+- **Models:** each cell was run on `openai/gpt-oss-120b` and `openai/gpt-oss-20b` (10 seeds each, 80 episodes). The preset also lists `qwen/qwen3.8-27b`, which was not used. Model is reported as a factor (F21, T7).
 - **Hypotheses tested:** H0 manipulation check (PC colludes more than S3), H2 (100% vs 25% reading → reporting), H3a/H3b (told watched → compliance, coded talk; S5 vs S3 since S6 is not run), H4 (is loyalty one trait), H6 (contagion), H15 (exploratory). The rest show as "not run" and are listed as future work.
-- **Tests:** `tests/test_apart.py` (7 tests) on top of the 65 shared ones; synthetic run of the preset recovers 9/9 planted checks.
-- **How to run tonight:** `TONIGHT.md`.
-
+- **Tests:** `tests/test_apart.py` on top of the shared tests.
+- **Results:** see `README.md` and `analysis/apart_judged/report.md`. Message labels come from an LLM judge that was not validated against human labels.
 
 Combines 3.2 (what makes collusion fragile / detectable) and 3.4 (countermeasures: monitoring, infiltration, incentives).
 Status labels: **BUILT+TESTED** = in this repo, verified against scripted bots or synthetic agents. **Illustrative** = scripted/synthetic agents, not model findings.
@@ -103,7 +102,7 @@ Kill criteria: if models never collude even with the explicit-alliance control, 
 - **Key.** Read from `GROQ_API_KEY` in the environment; never in code or the zip.
 - **Real constraint is tokens, not calls.** Groq free (verified Oct 2026 by a third-party page): about 1,000 requests/day but only 200K tokens/day per model. At ~1,000 tokens per call that is ~200 calls/day, i.e. ~2 sixteen-round episodes per model per day, not 1,500 calls. `python run_cartel.py --dry-run` prints the days needed; measure real tokens per call in the pilot and shorten prompts if needed.
 - **Agent details.** The agent never sees the event schedule. Message intents (pact/join/oath/leak) come from a keyword classifier, not the agent's own label; it is a heuristic that must be validated on ~50 hand-labelled messages. Bad claims in a report count as untruthful rather than being dropped. `--nudge explicit` is the positive control; `--nudge hint` a light prompt.
-- **Not yet done:** nothing here has touched a real model (the offline `--fake` model is pseudo-random and the `--backend sim` agents are synthetic with planted effects); the keyword classifier and the judge are unvalidated on real messages; reasoning-model options (`reasoning_effort`, JSON mode) are untested against Groq.
+- **Not yet done:** the judge was not validated against hand labels (`label_hand.py` + `python -m cartel.judge agree` exist for that); the keyword classifier was only compared with the judge, not with humans; the full design (other cells, webs, dose-response) was not run on a real model.
 
 ## 9. Weekend timeline (adjust to deadline/team size — not yet known)
 - Day 0 evening: LLM agent + tool schema, plumbing test with one cheap model, pilot.

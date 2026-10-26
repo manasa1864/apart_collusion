@@ -48,6 +48,8 @@ def test_standard_schedule_refuses_too_few_rounds():
 def test_one_model_out_of_quota_others_continue():
     tmp = tempfile.mkdtemp()
     os.environ.setdefault("GROQ_API_KEY", "test-key-not-real")
+    for n in range(2, 10):                                                 # real fallback keys in the environment would be called over the network
+        os.environ.pop(f"GROQ_API_KEY_{n}", None)
 
     def transport(payload):
         if payload["model"] == "A":

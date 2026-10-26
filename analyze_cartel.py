@@ -8,6 +8,7 @@ Works on partial data: anything that was not collected yet shows as 'not run' an
 """
 import argparse
 import os
+import sys
 import time
 import warnings
 
@@ -17,6 +18,7 @@ from cartel import analysis as A, figures as FG, report as R  # noqa: E402
 
 
 def main():
+    sys.stdout.reconfigure(encoding="utf-8")        # Windows consoles default to cp1252 and cannot print rho / delta
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--results", required=True)
     ap.add_argument("--labels", default=None, help="judge labels (python -m cartel.judge label ...)")

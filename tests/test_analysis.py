@@ -160,7 +160,7 @@ def test_report_runs_and_writes_everything():
     for t in ("T1_hypotheses", "T2_cells", "T3_webs", "T4_loyalty", "T5_data_quality", "T6_recovery"):
         for ext in ("csv", "md", "tex"):
             assert os.path.exists(os.path.join(out, "tables", f"{t}.{ext}")), (t, ext)
-    rep = open(os.path.join(out, "report.md")).read()
+    rep = open(os.path.join(out, "report.md"), encoding="utf-8").read()
     assert "SYNTHETIC DATA" in rep and "F05_price_of_loyalty" in rep
 
 
@@ -170,11 +170,11 @@ def test_judge_sample_and_agreement():
     res = _sim(tmp, seeds=1, design="cells")
     hand = os.path.join(tmp, "hand.csv")
     judge.sample(res, None, 20, hand)
-    rows = list(csv.DictReader(open(hand)))
+    rows = list(csv.DictReader(open(hand, encoding="utf-8-sig")))
     assert len(rows) == 20 and len({r["keyword"] for r in rows}) >= 3           # stratified: several label types
     for r in rows:
         r["human"] = r["keyword"]
-    with open(hand, "w", newline="") as f:
+    with open(hand, "w", newline="", encoding="utf-8-sig") as f:
         w = csv.DictWriter(f, fieldnames=list(rows[0])); w.writeheader(); w.writerows(rows)
     out = judge.agree(hand)
     assert out["keyword"]["kappa"] == 1.0
